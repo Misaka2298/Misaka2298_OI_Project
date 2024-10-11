@@ -7,11 +7,12 @@ int stk[maxn],tail;
 int main()
 {
 	int n, x;
-	scanf("%d",&n);
+	cin >> n;
 	cout.tie(0);
+	cin.tie(0);
 	while(n--)
 	{
-		scanf ("%d",&x);
+		cin >> x;
 		while(tail!=0 && stk[tail]>=x) tail --;
 		if(tail == 0) cout << -1 << " ";
 		else cout << stk[tail] << " ";
