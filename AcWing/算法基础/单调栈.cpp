@@ -19,4 +19,5 @@ int main()
 		stk[++tail] = x; 
 	}
 	return 0;
+	//test
 }
