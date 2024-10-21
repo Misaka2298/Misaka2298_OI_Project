@@ -15,8 +15,8 @@ int main()
 		{
 			//为什么这个是找区间左边界
 			int mid=(l+r)/2;
-			if(a[mid]>=check) r=mid;//????
-			else l=mid+1;//????
+			if(a[mid]>=check) r=mid;
+			else l=mid+1;
 		}
 		if(a[l]!=check) cout << "-1 -1" <<endl;
 		else
