@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 510 , maxm = 1e5+10;
+const int maxn = 510 , maxm = 1e4+10;
 
 int n , m , k;
 int dist[maxn] , backup[maxn];
@@ -25,7 +25,7 @@ void bellman_ford()
 		}
 	}
 	
-	if(dist[n] > 0x3f3f3f3f / 2)
+	if(dist[n] > 0x3f3f3f / 2)
 		cout << "impossible";
 	else cout <<dist[n];
 }
@@ -33,7 +33,7 @@ void bellman_ford()
 int main()
 {
 	cin >> n >> m >> k;
-	for(int i = 0 ; i < n ;i ++)
+	for(int i = 0 ; i < m ;i ++)
 	{
 		int a , b , w ;
 		cin >> a >> b >> w;
