@@ -21,7 +21,7 @@ int prim()
 		if(i) res += dist[t];
 		st[t] = true;
 		
-		for(int j = i ; j <= n ; j ++) dist[j] = min(dist[j] , g[t][j]);
+		for(int j = 1 ; j <= n ; j ++) dist[j] = min(dist[j] , g[t][j]);
 		
 	}
 	return res;
