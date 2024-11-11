@@ -25,7 +25,7 @@ void bellman_ford()
 		}
 	}
 	
-	if(dist[n] > 0x3f3f3f / 2)
+	if(dist[n] > 0x3f3f3f3f / 2)
 		cout << "impossible";
 	else cout <<dist[n];
 }

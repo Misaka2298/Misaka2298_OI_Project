@@ -6,8 +6,10 @@ typedef pair<int,int> PII;
 
 int n , m;
 int a[maxn] ,s[maxn];
-vector<int>tmp;
+vector<int>tmp;//离散化后坐标
 vector<PII>add,query;
+//对于add，first是坐标，second是增量
+//对于query，first是l，second是r
 
 int find(int check)
 {
