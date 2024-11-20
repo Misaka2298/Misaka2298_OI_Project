@@ -1,10 +1,12 @@
+//01背包问题的一维优化
+//状态转移方程：dp[j] = max(dp[j] , dp[j-v[i]]+w[i])
 #include <bits/stdc++.h>
 using namespace std;
 const int maxn = 1e3+10;
 
 int n , vv ;
 int v[maxn] , w[maxn];
-int f[maxn][maxn];
+int dp[maxn];
 
 int main()
 {
@@ -12,11 +14,10 @@ int main()
 	for(int i = 1 ; i <= n ; i++)cin >> v[i] >> w[i];
 	
 	for(int i = 1 ; i <= n ; i++)
-		for(int j = 0 ; j <= vv ; j++)
+		for(int j = vv ; j >= 1 ; j--)
 		{
-			f[i][j] = f[i-1][j];
-			if(j >= v[i]) f[i][j] = max(f[i][j] , f[i-1][j-v[i]]+w[i]);
+			if(j >= v[i]) dp[j] = max(dp[j] , dp[j-v[i]]+w[i]);
 		}
-	cout << f[n][vv];
+	cout << dp[vv];
 	return 0;
 }
