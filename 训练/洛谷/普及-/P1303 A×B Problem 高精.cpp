@@ -5,7 +5,7 @@ int la , lb , lc;
 int A[maxn] , B[maxn] , C[maxn];
 string a ,b;
 
-void BigMulti()
+void multi()
 {
 	for(int i = 0 ; i < la ; i ++)
 		for(int j = 0 ; j < lb ; j++) 
@@ -21,11 +21,11 @@ void BigMulti()
 int main()
 {
 	cin >> a >> b;
-	la = a.size() , lb = b.size() , lc = la+lb;
+	la = a.size () , lb = b.size() , lc = la+lb;
 	for(int i = la-1 ; ~i ; i--) A[la-i-1] = a[i] - '0';
 	for(int i = lb-1 ; ~i ; i--) B[lb-i-1] = b[i] - '0';
 	
-	BigMulti();
+	multi();
 	for(int i = lc ; ~i ; i--) cout << C[i];
 	return 0;
 }

@@ -4,7 +4,7 @@ using namespace std;
 const int maxn = 510;
 int n , m;
 int g[maxn][maxn];
-bool st[maxn];
+bool st[maxn];  
 int dist[maxn];
 
 int dijkstra()

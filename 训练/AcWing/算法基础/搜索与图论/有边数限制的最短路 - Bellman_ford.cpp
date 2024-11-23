@@ -4,6 +4,7 @@ const int maxn = 510 , maxm = 1e4+10;
 
 int n , m , k;
 int dist[maxn] , backup[maxn];
+
 struct Edge
 {
 	int a , b , w;
