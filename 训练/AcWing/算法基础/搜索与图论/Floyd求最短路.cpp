@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int maxn = 202 , INF = 1e9;
-int g[maxn][maxn];
+int dist[maxn][maxn];
 int n , m , Q;
 
 void floyd()
@@ -9,7 +9,7 @@ void floyd()
 	for(int k = 1 ; k <=n ; k++)
 		for(int i = 1 ; i <= n ; i++)
 			for(int j = 1 ; j <= n ; j++)
-				g[i][j] = min(g[i][j],g[i][k]+g[k][j]);
+				dist[i][j] = min(dist[i][j],dist[i][k]+dist[k][j]);
 				
 	return;
 }
@@ -20,15 +20,15 @@ int main()
 	for(int i = 1 ; i <= n ; i ++)
 		for(int j = 1 ; j <= n ; j++)
 		{
-			if(i == j) g[i][j] = 0;
-			else g[i][j] = INF;	
+			if(i == j) dist[i][j] = 0;
+			else dist[i][j] = INF;	
 		}
 		
 	int a,b,w;
 	while(m--)
 	{
 		cin >> a >> b >> w;
-		g[a][b] = min(g[a][b] , w);
+		dist[a][b] = min(dist[a][b] , w);
 	}
 	
 	floyd();
@@ -36,8 +36,8 @@ int main()
 	while(Q--)
 	{
 		cin >> a >> b;
-		if(g[a][b] > INF / 2) cout << "impossible" << endl;
-		else cout << g[a][b] << endl;
+		if(dist[a][b] > INF / 2) cout << "impossible" << endl;
+		else cout << dist[a][b] << endl;
 	}
 	return 0;
 }

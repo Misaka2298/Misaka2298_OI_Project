@@ -8,12 +8,11 @@ int p[maxn];
 struct Edges
 {
     int a, b, w;
-
-    bool operator< (const Edges &W)const
-    {
-        return w < W.w;
-    }
 }edges[maxm];
+
+bool cmp(Edges a, Edges b) {
+    return a.w < b.w;
+}
 
 int find(int x)
 {
@@ -33,7 +32,7 @@ int main()
 		edges[i] = {a,b,w};
 	}
 	
-	sort(edges , edges + m);
+	sort(edges , edges + m , cmp);
 	
 	int res = 0 , cnt = 0;
 	for(int i = 0 ; i < m ; i++)

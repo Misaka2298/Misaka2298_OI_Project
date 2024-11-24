@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef pair<int,int> PII;
 const int maxn = 1e6+10;
 int n , m;
 int h[maxn] , e[maxn] , ne[maxn] , w[maxn] ,idx;
