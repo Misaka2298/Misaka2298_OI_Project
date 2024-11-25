@@ -19,9 +19,10 @@ bool dfs(int u , int c)
 		int j = e[i];
 		if(!color[j])
 		{
-			if(!dfs(j , 3-c)) return false;
+			if(!dfs(j , 3-c)) 
+				return false;
 		}
-		else if(color[j] == c)return false;
+		if(color[j] == c) return false;
 	}
 	
 	return true;
