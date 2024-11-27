@@ -42,15 +42,10 @@ void spfa()
 	}
 	
 	if(dist[n] == 0x3f3f3f3f)
-	{
 		cout << "impossible";
-		return;
-	}
 	else
-	{
 		cout << dist[n];
-		return;
-	}
+	return;
 }
 
 int main()
