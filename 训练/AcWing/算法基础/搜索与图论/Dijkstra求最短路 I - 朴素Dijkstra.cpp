@@ -9,7 +9,7 @@ int dist[maxn];
 
 int dijkstra()
 {
-	memset(dist,-1,sizeof dist);
+	memset(dist,0x3f,sizeof dist);
 	dist[1] = 0;
 	for(int i = 0 ; i < n ; i++)
 	{

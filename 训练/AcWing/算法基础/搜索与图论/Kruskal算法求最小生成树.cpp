@@ -4,7 +4,7 @@ using namespace std;
 const int maxn = 1e5+10 , maxm = 2e5+10;
 
 int n , m ;
-int p[maxn];
+int fa[maxn];
 struct Edges
 {
     int a, b, w;
@@ -16,14 +16,14 @@ bool cmp(Edges a, Edges b) {
 
 int find(int x)
 {
-	if (p[x] != x) p[x] = find(p[x]);
-    return p[x];
+	if (fa[x] != x) fa[x] = find(fa[x]);
+    return fa[x];
 }
 
 int main()
 {
 	cin >> n >> m;
-	for(int i = 1 ; i <= n ; i ++) p[i] = i;
+	for(int i = 1 ; i <= n ; i ++) fa[i] = i;
 	
 	int a , b , w;
 	for(int i = 0 ; i < m ; i ++)
@@ -41,7 +41,7 @@ int main()
 		a = find(a) , b = find(b);
 		if(a != b)
 		{
-			p[a] = b;
+			fa[a] = b;
 			res += w;
 			cnt ++;
 		}
