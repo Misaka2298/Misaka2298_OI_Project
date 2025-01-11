@@ -48,7 +48,7 @@ signed main()
 			if(opt == 'T')
 				v[x] = T;
 			if(opt == 'F')
-				continue;
+				v[x] = T;
 			if(opt == 'U')
 				v[x] = U;
 		}
