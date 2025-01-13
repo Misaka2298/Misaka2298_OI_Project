@@ -1,28 +1,30 @@
+//https://www.acwing.com/activity/content/problem/content/937/
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 1e6+10;
+const int maxn = 1000010;
 
-int n;
+int primes[maxn], cnt;
 bool st[maxn];
 
-int get_prime(int x)
+void get_primes(int n)
 {
-	int ans = 0;
-	for(int i = 2 ; i <= n ; i++)
-	{
-		if(st[i]) continue;//prune
-		for(int j = 2 ; i*j <= n ; j++)
-			st[i*j] = true;
-	}
-	for(int i = 2 ; i <= n ; i++)
-		if(!st[i]) ans ++;
-	return ans;
+    for (int i = 2; i <= n; i ++ )
+    {
+        if (st[i]) continue;
+        primes[cnt ++ ] = i;
+        for (int j = i + i; j <= n; j += i)
+            st[j] = true;
+    }
 }
 
-signed main()
+int main()
 {
-	cin >> n;
-	int cnt = get_prime(n);
-	cout << cnt;
-	return 0;
+    int n;
+    cin >> n;
+
+    get_primes(n);
+
+    cout << cnt << endl;
+
+    return 0;
 }
