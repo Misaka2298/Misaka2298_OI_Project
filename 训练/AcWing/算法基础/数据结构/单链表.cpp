@@ -11,19 +11,12 @@ void init()
 
 void add_to_head(int x)//在头结点后插入x
 {
-	e[idx]=x;
-	ne[idx]=head;
-	head = idx;
-	idx++;
+	e[idx]=x, ne[idx]=head, head = idx, idx++;
 }
 
 void add(int k,int x)//在k-1结点后插入x
 {
-	k--;
-	e[idx]=x;
-	ne[idx]=ne[k];
-	ne[k]=idx;
-	idx++;
+	k--, e[idx]=x, ne[idx]=ne[k], ne[k]=idx, idx++;
 }
 
 void rm(int k)//删除k-1后一个值
