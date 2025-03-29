@@ -17,7 +17,8 @@ void update(int i)
 
 void pushdown(int i)
 {
-    if(t[i].lazy == 0)
+    if(t[i].
+    lazy == 0)
         return;
     t[i*2].lazy += t[i].lazy;
     t[i*2+1].lazy += t[i].lazy;
@@ -61,7 +62,7 @@ void change(int i,int l,int r,int x)
 int query(int i,int l,int r)
 {
     if(l<=t[i].l && t[i].r <= r)
-        return t[i].sum;;;;;;;
+        return t[i].sum;
     if(t[i].l > r || t[i].r < l)
         return 0;
     pushdown(i);

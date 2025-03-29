@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 const int maxn = 1e5+10 , maxm = 2e5+10;
 
 int n , m ;
 int fa[maxn];
-struct Edges
-{
+struct Edges{
     int a, b, w;
 }edges[maxm];
 
