@@ -1,30 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 1e5+10;
-
+const int maxn = 1e6+10;
 int n , m;
-int e[maxn], ne[maxn], h[maxn], w[maxn], idx;
+int h[maxn] , e[maxn] , ne[maxn] , w[maxn] ,idx;
 int dist[maxn];
 bool st[maxn];
 
-void addedge(int a, int b, int c)
+void addedge(int a , int b ,int c)
 {
-	e[idx] = b , w[idx] = c , ne[idx] = h[a] , h[a] = idx++;
+	e[idx] = b ,w[idx] = c,ne[idx]=h[a],h[a]=idx++;
 }
 
 void spfa()
 {
-	queue<int>q;
-	q.push(1);
-	st[1] = true;
 	memset(dist,0x3f,sizeof dist);
-	dist[1] = 0;
+	dist[1]=0;
+	
+	deque<int>q;
+	q.push_back(1);
+	st[1] = true;
 	
 	while(q.size())
 	{
 		int t = q.front();
-		q.pop();
-		
+		q.pop_front();
 		st[t] = false;
 		
 		for(int i = h[t] ; i != -1 ; i = ne[i])
@@ -35,19 +34,22 @@ void spfa()
 				dist[j] = dist[t] + w[i];
 				if(!st[j])
 				{
+					if(q.size() && q.front() > dist[j]) q.push_back(j);
+					else q.push_front(j);
 					st[j] = true;
-					q.push(j);
 				}
 			}
 		}
 	}
 	
-	if(dist[n] > 0x3f3f3f3f/2) cout << "impossible";
-	else cout << dist[n];
+	if(dist[n] == 0x3f3f3f3f)
+		cout << "impossible";
+	else
+		cout << dist[n];
 	return;
 }
 
-signed main()
+int main()
 {
 	cin >> n >> m;
 	int a , b , c;
@@ -57,6 +59,7 @@ signed main()
 		cin >> a >> b >> c;
 		addedge(a,b,c);
 	}
+	
 	spfa();
 	
 	return 0;
