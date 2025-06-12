@@ -48,7 +48,7 @@ void heap_dijkstra(int sta)
 		if(tid != sta && is_ed[tid])
 		{
 			ans = min(ans, dist[tid]);
-			break;
+			//break;
 		}
 		
 		for(int i = h[tid] ; i != -1 ; i = ne[i])
