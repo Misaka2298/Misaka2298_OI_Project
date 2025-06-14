@@ -1,37 +1,60 @@
-//T1AC
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int maxn=1000010;
-int d[maxn], s[maxn], t[maxn], a[maxn];
-int n, m, R[maxn], l, r;
-bool check(int x){
-    memset(a,0,sizeof(0));//差分数组 
-    for(int i=1;i<=x;i++){
-        a[s[i]]+=d[i];
-        a[t[i]+1]-=d[i];    
-    }
-    for(int i=1;i<=n;i++)
-	    a[i]+=a[i-1];
-    for(int i=1;i<=n;i++)
-	    if(a[i]>R[i])return false;//无法满足 
-    return true;
+const int maxn = 1e6+10;
+
+int n, m;
+int classes[maxn];
+struct req{
+	int l, r, w;
+}reqs[maxn];
+long long s[maxn];
+
+bool check(int x)
+{
+	memset(s, 0, sizeof s);
+	
+	for(int i = 1 ; i <= x ; i ++)
+	{
+		s[reqs[i].l] += reqs[i].w;
+		s[reqs[i].r+1] -= reqs[i].w;
+	}
+	
+	for(int i = 1 ; i <= n ; i++)
+	{
+		s[i] += s[i-1];
+		if(s[i] > classes[i])
+			return 0;
+	}
+	return 1;
 }
-int main(){
-    scanf("%d%d",&n,&m);
-    for(int i=1;i<=n;i++)
-	    scanf("%d",&R[i]);
-    for(int i=1;i<=m;i++)
-	    scanf("%d%d%d",&d[i],&s[i],&t[i]);
-    if(check(m)){
-    	puts("0");
-    	return 0;
-    }
-    l=0,r=m;  //可能一个订单都无法满足 
-    while(l<r){
-        int mid=l+r+1>>1;
-        if(check(mid)) l=mid;
-        else r=mid-1;
-    }
-    cout<<-1<<endl<<l+1;
-    return 0; 
+
+signed main()
+{
+	ios::sync_with_stdio(false);cin.tie(0);
+	cin >> n >> m;
+	for(int i = 1 ; i <= n ; i++)
+		cin >> classes[i];
+	
+	for(int i = 1 ; i <= m ; i++)
+	{
+		int a, b, c;
+		cin >> c >> a >> b;
+		reqs[i] = {a, b, c};
+	}
+	
+	int l = 1, r = m, mid, ans = -1;
+	while(l <= r)
+	{
+		mid = (l+r)/2;
+		if(check(mid)) l = mid+1;
+		else
+		{
+			ans = mid;
+			r = mid-1;
+		}
+	}
+	
+	if(ans != -1) cout << -1 << endl << ans;
+	else cout << 0;
+	
 }
