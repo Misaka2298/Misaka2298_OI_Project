@@ -20,12 +20,8 @@ signed main()
 	
 	deque<int> wait;
 	for(int i = char('a') ; i <= char('z') ; i ++)
-	{
 		if(cnt[i] % 2 != 0)
-		{
 			wait.push_back(i);
-		}
-	}
 	
 	int mid = -1;
 	while(wait.size())
@@ -37,15 +33,8 @@ signed main()
 			break;
 		}
 		wait.pop_front(), wait.pop_back();
-		cnt[l] ++, cnt[r]--;
+		cnt[l]++, cnt[r]--;
 	}
-
-	/*
-	for(int i = char('a') ; i <= char('z') ; i ++)
-		cout << cnt[i] << ' ';
-	cout << endl;
-	*/
-	
 	
 	if(isOdd) cnt[mid] --;
 	for(int i = char('a') ; i <= char('z') ; i ++)
@@ -57,17 +46,10 @@ signed main()
 	
 	if(isOdd) cout << char(mid);
 	
-	/*
-	cout << endl;
-	for(int i = char('a') ; i <= char('z') ; i ++)
-		cout << cnt[i] << ' ';
-	cout << endl;
-	*/
-	
 	for(int i = char('z') ; i >= char('a') ; i --)
 	{
 		for(int j = 0 ; j < cnt[i] ; j++)
 			cout << char(i);
 	}
-		
+ 
 }
