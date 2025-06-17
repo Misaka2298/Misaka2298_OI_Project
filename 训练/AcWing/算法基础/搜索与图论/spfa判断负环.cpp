@@ -35,7 +35,7 @@ bool spfa()
 			{
 				dist[j] = dist[t] + w[i];
 				cnt[j] = cnt[t] + 1;
-				if(cnt[j] >= n)return true;
+				if(cnt[j] >= n) return true;
 				if(!st[j])
 				{
 					q.push(j);

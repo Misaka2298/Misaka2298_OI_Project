@@ -47,8 +47,13 @@ signed main()
 		f[0][0] = 1;
 		for(int i = 1 ; i <= m ; i++)
 			for(int j = 0 ; j < 1 << n ; j ++)
-				for(auto k : vaild[j])
+				//for(auto k : vaild[j])
+				for(int kk = 0 ; kk < vaild.size() ; kk++)
+				{
+					int k = vaild[kk];
 					f[i][j] += f[i-1][k];
+				}
+					
 						
 		cout << f[m][0] << endl;
 	}
