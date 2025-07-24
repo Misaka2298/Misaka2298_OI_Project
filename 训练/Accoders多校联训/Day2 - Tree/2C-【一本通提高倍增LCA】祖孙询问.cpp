@@ -15,7 +15,7 @@ int e[maxn], ne[maxn], h[maxn], idx;
 int fa[maxn][16], depth[maxn];
 
 void addedge(int a, int b)
-{-
+{
 	e[idx] = b, ne[idx] = h[a], h[a] = idx++;
 }
 
