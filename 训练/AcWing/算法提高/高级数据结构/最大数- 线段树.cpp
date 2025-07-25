@@ -74,6 +74,7 @@ signed main()
 	{
 		char opt;
 		int x;
+	
 		cin >> opt >> x;
 		if(opt == 'A')
 		{
