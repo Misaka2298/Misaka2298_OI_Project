@@ -8,13 +8,16 @@ string a, b;
 
 signed main()
 {
+	ios::sync_with_stdio(false); cin.tie(nullptr);
+	//freopen("lexi.in", "r", stdin);
+	//freopen("lexi.out", "w", stdout);
 	cin >> a >> b;
 	for(int i = 0 ; i < a.size() ; i ++)
 		if(isupper(a[i]))
-			a[i] = a[i] + 32;
+			a[i] = tolower(a[i]);
 	for(int i = 0 ; i < b.size() ; i ++)
 		if(isupper(b[i]))
-			b[i] = b[i] + 32;
+			b[i] = tolower(b[i]);
 	
 	if(a > b)
 		cout << 1;

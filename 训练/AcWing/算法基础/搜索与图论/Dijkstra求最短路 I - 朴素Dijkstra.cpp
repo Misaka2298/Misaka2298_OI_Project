@@ -13,7 +13,7 @@ int dijkstra()
 	dist[1] = 0;
 	for(int i = 0 ; i < n ; i++)
 	{
-		int t = -1;//未确定最短路的点中的最短路点
+		int t = -1;
 		for(int j = 1 ; j <= n ; j++)
 			if(!st[j] && (t == -1 || dist[j] < dist[t]))
 				t = j ;

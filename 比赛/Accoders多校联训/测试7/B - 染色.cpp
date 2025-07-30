@@ -2,23 +2,24 @@
 // expect pts = 100
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 5e3+10;
+const int maxn = 1e5+10;
 
 int n, a[maxn];
 bool st[maxn];
+unordered_set<int> seet;
 
 signed main()
 {
+	freopen("paint.in", "r", stdin);
+	freopen("paint.out", "w", stdout);
 	ios::sync_with_stdio(false); cin.tie(nullptr);
 	cin >> n;
 	bool spe = true;
 	for(int i = 1 ; i <= n ; i++)
 	{
 		cin >> a[i];
-		if(st[a[i]])
-			spe = 0;
-		else
-			st[a[i]] = 1;
+		if(seet.count(a[i])) spe = false;
+		seet.insert(a[i]);
 	}
 	
 	
