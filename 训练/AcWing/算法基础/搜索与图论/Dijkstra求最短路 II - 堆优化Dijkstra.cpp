@@ -25,12 +25,12 @@ int dijkstra()
 	{
 		auto t = heap.top();
 		heap.pop();
-		int tver = t.second , tdist = t.first;
+		int tid = t.second , tdist = t.first;
 		
-		if(st[tver]) continue;
-		st[tver] = true;
+		if(st[tid]) continue;
+		st[tid] = true;
 		
-		for(int i = h[tver] ; i != -1 ; i = ne[i])
+		for(int i = h[tid] ; i != -1 ; i = ne[i])
 		{
 			int j = e[i];//e是编号
 			if(dist[j] > tdist +w[i])
