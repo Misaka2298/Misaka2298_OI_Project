@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int maxn = 1e5+10;
-int e[maxn] , h[maxn] , ne[maxn] ,idx;
-int q[maxn] , d[maxn] , n , m;
+int e[maxn], h[maxn], ne[maxn], idx;
+int q[maxn], d[maxn], n, m;
 
-void addedge(int a , int b)
+void addedge(int a, int b)
 {
 	e[idx] = b , ne[idx] = h[a] , h[a] = idx++;
 }
@@ -31,7 +31,7 @@ bool topsort()
 	return tt == n-1;
 }
 
-int main()
+signed main()
 {
 	memset(h,-1,sizeof h);
 	cin >> n >> m;

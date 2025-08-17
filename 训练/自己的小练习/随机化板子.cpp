@@ -8,7 +8,7 @@ int getintrand(int l, int r)
     return uniform_int_distribution<int>(l, r)(myrand);
 }
 
-double getintrand(double l, double r)
+double getdoublerand(double l, double r)
 {
     return uniform_real_distribution<double>(l, r)(myrand);
 }
@@ -17,5 +17,5 @@ signed main()
 {
 	int l, r;
 	cin >> l >> r;
-	cout << getrand(l, r);
+	cout << getintrand(l, r);
 }
