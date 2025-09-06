@@ -3,18 +3,20 @@
 using namespace std;
 const int maxn = 1e6+10;
 
-int n, prime[maxn], idx;
+int n, idx;
 bool st[maxn];
+vector<int> prime;
 
 int get_prime()
 {
 	for(int i = 2 ; i <= n ; i++)
 	{
-		if(!st[i]) prime[++idx] = i;
-		for(int j = 1 ; 1ll*i*prime[j] <= n ; j++)
+		if(!st[i]) prime.push_back(i);
+		for(auto pri_j : prime)	
 		{
-			st[i*prime[j]] = true;
-			if(i % prime[j] == 0) break;
+			if(i * pri_j > n) break;
+			st[i * pri_j] = true;
+			if(i % pri_j == 0) break;
 		}
 	}
 	int ans = 0;
