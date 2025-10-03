@@ -2,7 +2,8 @@
 using namespace std;
 const int maxn = 1e5+10;
 int e[maxn], h[maxn], ne[maxn], idx;
-int q[maxn], d[maxn], n, m;
+int d[maxn], n, m;
+queue<int> que;
 
 void addedge(int a, int b)
 {
@@ -11,24 +12,25 @@ void addedge(int a, int b)
 
 bool topsort()
 {
-	int hh = 0 , tt = -1;
+	
 	for(int i = 1 ; i <= n ; i++)
 		if(!d[i])
-			q[++tt] = i;
+			que.push(i);
+	int cnt = n;
 	
-	while(hh <= tt)
+	while(que.size())
 	{
-		int t = q[hh++];
-		
+		int t = que.front(); que.pop();
+		cnt --;
 		for(int i = h[t] ; i != -1 ; i = ne[i])
 		{
 			int j = e[i];
 			d[j] --;
-			if(d[j] == 0) q[++tt] = j;
+			if(d[j] == 0) que.push(j), cnt ++;
 		}
 	}
 	
-	return tt == n-1;
+	return cnt == n-1;
 }
 
 signed main()
@@ -45,8 +47,11 @@ signed main()
 	
 	if(topsort())
 	{
-		for(int i = 0 ; i < n ; i ++)
-			cout << q[i] << ' ';
+		while(que.size())
+		{
+			cout << que.front() << ' ';
+			que.pop();
+		}
 		cout << endl;
 	}
 	else cout << -1;
