@@ -1,46 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int maxn = 1e5+10;
-int p[maxn],asize[maxn],n,m;//用asize是为了避免关键字冲突
+
+int n, m;
+int fa[maxn], sz[maxn];
 
 int find(int x)
 {
-	if(p[x]!=x) p[x]=find(p[x]);
-	return p[x];
+	if(fa[x] != x) fa[x] = find(fa[x]);
+	return fa[x];
 }
 
-int main()
+signed main()
 {
-	scanf("%d%d",&n,&m);
+	cin >> n >> m;
 	
-	for(int i = 1 ;i <=n ;i++)
+	for(int i = 1 ; i <= n ; i++)
 	{
 		p[i]=i;
-		asize[i] = 1;
+		sz[i] = 1;
 	}
 	
-	while(m--)
+	while(m --)
 	{
-		char opt[5];
-		scanf("%s",opt);
-		int a , b;
-		if(opt[0] == 'C') 
+		char opt;
+		cin >> opt;
+		int a, b;
+		if(opt == 'C')// 合并两个连通块
 		{
-			scanf ("%d%d",&a,&b);
-			if(find(a) == find(b)) continue;
-			else asize[find(b)]+=asize[find(a)];
-			p[find(a)]=find(b);
+			cin >> a >> b;
+			a = find(a), b = find(b);
+			if(a == b) continue;
+			else sz[b] += sz[a];
+			fa[a] = b;
 		}
-		else if(opt[1] == '1')
+		else if(opt == '1')// 查询是否在同一个连通块
 		{
-			scanf ("%d%d",&a,&b);
-			if(find(a) == find(b)) cout << "Yes" <<endl;
+			cin >> a >> b;
+			a = find(a), b = find(b);
+			if(a == b) cout << "Yes" <<endl;
 			else cout << "No" << endl;
 		}
-		else
+		else// 查询连通块大小
 		{
-			scanf("%d" ,&a);
-			cout << asize[find(a)]<<endl;
+			cin >> a;
+			cout << sz[find(a)]<<endl;
 		}
 	}
 	return 0;
