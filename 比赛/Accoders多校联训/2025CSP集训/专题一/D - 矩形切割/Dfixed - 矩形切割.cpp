@@ -64,9 +64,9 @@ signed main()
 		for(int i = 1 ; i <= n-2 ; i ++)
 			for(int j = i+1 ; j <= n-1 ; j ++)
 			{
-				LL sum1 = line[i];
-				LL sum2 = line[j] - line[i];
-				LL sum3 = S - line[j];
+				LL sum1 = line[i];// 1 ~ i
+				LL sum2 = line[j] - line[i];// i+1 ~ j
+				LL sum3 = S - line[j];// j+1 ~ n
 				if(check(sum1, sum2, sum3)) 
 				{
 					ans ++;
@@ -79,9 +79,9 @@ signed main()
 		for(int i = 1 ; i <= m-2 ; i ++)
 			for(int j = i+1 ; j <= m-1 ; j ++)
 			{
-				LL sum1 = col[i];
-				LL sum2 = col[j] - col[i];
-				LL sum3 = S - col[j];
+				LL sum1 = col[i];// 1 ~ i
+				LL sum2 = col[j] - col[i];// i+1 ~ j
+				LL sum3 = S - col[j];// j+1 ~ n
 				if(check(sum1, sum2, sum3)) 
 				{
 					ans ++;

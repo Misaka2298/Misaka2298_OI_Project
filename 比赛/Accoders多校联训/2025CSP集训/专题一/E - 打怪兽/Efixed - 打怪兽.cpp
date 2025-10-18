@@ -1,4 +1,4 @@
-// E
+// E fixed
 // expect pts = 100
 // expect diff = orange
 // 我的第一个AK的模拟赛要出现了吗
