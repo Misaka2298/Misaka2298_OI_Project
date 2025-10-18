@@ -5,3 +5,7 @@
 
 > [!warning]
 > 吃饭慎入，小心看code看吐。
+
+[主仓库(Github)](https://github.com/Misaka2298/Misaka2298_OI_Project/)
+
+[中国大陆镜像(Gitee)](https://gitee.com/Misaka2298/misaka_oi_project)
