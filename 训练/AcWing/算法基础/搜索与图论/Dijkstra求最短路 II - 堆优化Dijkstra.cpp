@@ -25,17 +25,17 @@ int dijkstra()
 	{
 		auto t = heap.top();
 		heap.pop();
-		int tid = t.second , tdist = t.first;
+		int u = t.second , dis = t.first;
 		
-		if(st[tid]) continue;
-		st[tid] = true;
+		if(st[u]) continue;
+		st[u] = true;
 		
-		for(int i = h[tid] ; i != -1 ; i = ne[i])
+		for(int i = h[u] ; i != -1 ; i = ne[i])
 		{
 			int j = e[i];//e是编号
-			if(dist[j] > tdist +w[i])
+			if(dist[j] > dis +w[i])
 			{
-				dist[j] = tdist +w[i];
+				dist[j] = dis +w[i];
 				heap.push({dist[j],j});
 			}
 		}

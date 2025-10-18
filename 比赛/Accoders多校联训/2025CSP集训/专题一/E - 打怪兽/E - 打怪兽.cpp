@@ -1,0 +1,42 @@
+// E
+// expect pts = 100
+// expect diff = orange
+// 我的第一个AK的模拟赛要出现了吗
+// 乔子健你牛波大了
+// 不是兄弟这套题有点猎奇
+// 这真是CSP模拟吗
+// 不会给我最后放道黑吧
+
+#include <bits/stdc++.h>
+using namespace std;
+const int maxn = 2e5+10;
+typedef long long LL;
+#define endl '\n'
+
+int T;
+int n;
+int a[maxn];
+
+signed main()
+{
+	freopen("data.in", "r", stdin);
+	freopen("user.out", "w", stdout);
+	cin >> T;
+	while(T --)
+	{
+		cin >> n;
+		for(int i = 1 ; i <= n ; i ++)
+			cin >> a[i];
+		sort(a+1, a+1+n);
+		
+		LL ans = 0;
+		for(int i = 1 ; i < n ; i ++)
+		{
+			if(a[i+1] - a[i] == 1 || a[i+1] - a[i] == 0)
+				continue;
+			ans += a[i+1] - a[i] - 1;
+			a[i+1] = a[i] + 1;
+		}
+		cout << ans << endl;
+	}
+}
