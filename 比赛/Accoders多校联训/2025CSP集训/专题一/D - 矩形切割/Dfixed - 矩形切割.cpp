@@ -81,7 +81,7 @@ signed main()
 			{
 				LL sum1 = col[i];// 1 ~ i
 				LL sum2 = col[j] - col[i];// i+1 ~ j
-				LL sum3 = S - col[j];// j+1 ~ n
+				LL sum3 = S - col[j];// j+1 ~ m
 				if(check(sum1, sum2, sum3)) 
 				{
 					ans ++;

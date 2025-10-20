@@ -43,3 +43,19 @@ while(l <= r)//(fabs(l-r) > 0.00001)
 	else
 		r = mid - 1;
 }
+
+// STL的二分查找
+int x;
+cin >> x;
+int l = lower_bound(a, a+n, x) - a;// 左边界
+int r = upper_bound(a, a+n, x) - a - 1;// 右边界
+if(a[l] == x) cout << l << ' ' << r << endl;
+else cout << -1 << ' ' << -1 << endl;
+
+// 在vector中查找
+int l = lower_bound(a.begin(), a.end(), x) - a.begin();// 左边界
+int r = upper_bound(a.begin(), a.end(), x) - a.begin() - 1;// 右边界
+
+
+
+
