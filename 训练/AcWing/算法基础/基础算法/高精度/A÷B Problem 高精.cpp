@@ -7,18 +7,19 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+typedef vector<int> VI;
 
 string a;
 
-vector<int> Div(vector<int> &A, int b, int &r)
+VI Div(VI &A, int B, int &r)
 {
-	vector<int> C;
+	VI C;
 	r = 0;
 	for(int i = A.size()-1 ; i >= 0 ; i --)
 	{
 		r = r * 10 + A[i];
-		C.push_back(r / b);
-		r %= b;
+		C.push_back(r / B);
+		r %= B;
 	}
 	
 	reverse(C.begin(), C.end());
@@ -31,7 +32,7 @@ signed main()
 {
 	int b;
 	cin >> a >> b;
-	vector<int> A;
+	VI A;
 	
 	for(int i = a.size()-1 ; i >= 0 ; i --)
 		A.push_back(a[i] - '0');

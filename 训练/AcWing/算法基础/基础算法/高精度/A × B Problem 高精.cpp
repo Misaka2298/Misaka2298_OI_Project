@@ -7,13 +7,14 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+typedef vector<int> VI;
 
 string a;
 int b;
 
-vector<int> Mul(vector<int> &A, int b)
+VI Mul(VI &A, int b)
 {
-	vector<int> C;
+	VI C;
 	
 	int t = 0;
 	for(int i = 0 ; i < A.size() || t ; i ++)
@@ -32,7 +33,7 @@ vector<int> Mul(vector<int> &A, int b)
 signed main()
 {
 	cin >> a >> b;
-	vector<int> A;
+	VI A;
 	
 	for(int i = a.size()-1 ; i >= 0 ; i --)
 		A.push_back(a[i] - '0');

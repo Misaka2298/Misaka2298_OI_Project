@@ -7,15 +7,16 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+typedef vector<int> VI;
 
 string a, b;
 
-vector<int> Add(vector<int> &A, vector<int> &B)
+VI Add(VI &A, VI &B)
 {
 	if(A.size() < B.size())
 		return Add(B, A);
 	int t = 0;
-	vector<int> C;
+	VI C;
 	for(int i = 0 ; i < A.size() ; i ++)
 	{
 		t += A[i];
@@ -31,7 +32,7 @@ vector<int> Add(vector<int> &A, vector<int> &B)
 
 signed main()
 {
-	vector<int> A, B;
+	VI A, B;
 	cin >> a >> b;
 	for(int i = a.size()-1 ; i >= 0 ; i --)
 		A.push_back(a[i] - '0');

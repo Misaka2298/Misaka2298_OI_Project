@@ -1,4 +1,4 @@
-// Problem: 高精度减法
+ // Problem: 高精度减法
 // Contest: AcWing
 // URL: https://www.acwing.com/problem/content/794/
 // Memory Limit: 64 MB
@@ -7,10 +7,11 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+typedef vector<int> VI;
 
 string a, b;
 
-bool aisbig(vector<int> &A, vector<int> &B)
+bool aisbig(VI &A, VI &B)
 {
 	if(A.size() != B.size())
 		return A.size() > B.size();
@@ -21,9 +22,9 @@ bool aisbig(vector<int> &A, vector<int> &B)
 	return true;
 }
 
-vector<int> Sub(vector<int> &A, vector<int> &B)
+VI Sub(VI &A, VI &B)
 {
-	vector<int> C;
+	VI C;
 	int t = 0;
 	for(int i = 0 ; i < A.size() ; i ++)
 	{
@@ -45,15 +46,15 @@ vector<int> Sub(vector<int> &A, vector<int> &B)
 signed main()
 {
 	cin >> a >> b;
-	vector<int> A, B;
+	VI A, B;
 	for(int i = a.size()-1 ; i >= 0 ; i --)
 		A.push_back(a[i] - '0');
 	for(int i = b.size()-1 ; i >= 0 ; i --)
 		B.push_back(b[i] - '0');
 		
-	vector<int> C;
+	VI C;
 	
-	if(aisbig(A, B))w
+	if(aisbig(A, B))
 		C = Sub(A, B);
 	else
 		C = Sub(B, A), cout << '-';
