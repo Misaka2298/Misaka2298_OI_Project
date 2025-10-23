@@ -3,99 +3,95 @@
 // URL: https://www.acwing.com/problem/content/246/
 // Memory Limit: 128 MB
 // Time Limit: 1000 ms
-// Time: 2025-07-25 10:26:40
+// Time: 2025-10-23 18:13:12
 
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 1e6+10;
+const int maxn = 5e5+50;
 
-int n, q;
-int w[maxn];
-struct Node
-{
+int n, m;
+int a[maxn];
+
+struct SegTree{
 	int l, r;
-	int sum, tmax, lmax, rmax;	
-}tr[maxn * 4];
+	int maxr, maxl, sum, mx;
+}t[maxn*4];
 
-void tr_pushup(Node &u, Node &l, Node &r)
+struct Node{
+	int maxl, maxr, sum, mx;
+};
+
+void pushup(int u)
 {
-	u.sum = l.sum + r.sum;
-	u.lmax = max(l.lmax, l.sum + r.lmax);
-	u.rmax = max(r.rmax, r.sum + l.rmax);
-	u.tmax = max(max(l.tmax, r.tmax), l.rmax + r.lmax);
+	int l = u*2, r = u*2+1;
+	t[u].maxl = max(t[l].maxl, t[l].sum + t[r].maxl);
+    t[u].maxr = max(t[r].maxr, t[r].sum + t[l].maxr);
+    t[u].mx = max({t[l].mx, t[r].mx, t[l].maxr+t[r].maxl});
+	t[u].sum = t[l].sum + t[r].sum;
 }
 
-void tr_pushup(int u)
+void build(int u, int l, int r)
 {
-	tr_pushup(tr[u], tr[u*2], tr[u*2+1]);
-}
-
-void tr_build(int u, int l, int r)
-{
+	t[u].l = l, t[u].r = r;
 	if(l == r)
-		tr[u] = {l, r, w[l], w[l], w[l], w[l]};
-	else
 	{
-		tr[u] = {l, r};
-		int mid = (l + r) / 2;
-		tr_build(u*2, l, mid);
-		tr_build(u*2+1, mid+1, r);
-		tr_pushup(u);
+		t[u].maxr = t[u].maxl = t[u].sum = t[u].mx = a[l];
+		return ;
 	}
+	
+	int mid = (l+r) / 2;
+	build(u*2, l, mid);
+	build(u*2+1, mid+1, r);
+	pushup(u);
 }
 
-void tr_modify(int u, int x, int v)
+void change(int u, int x, int y)
 {
-	if(tr[u].l == x && tr[u].r == x)
-		tr[u] = {x, x, v, v, v, v};
-	else
+	if(t[u].l == t[u].r && t[u].l == x)
 	{
-		int mid = (tr[u].l + tr[u].r) / 2;
-		if(x <= mid)
-			tr_modify(u*2, x, v);
-		else
-			tr_modify(u*2+1, x, v);
-		tr_pushup(u);
+		t[u].sum = t[u].maxl = t[u].maxr = t[u].mx = y;
+		return;
 	}
+	if(t[u].l > x || t[u].r < x)
+		return;
+	
+	int mid = (t[u].l + t[u].r) / 2;
+	if(x <= mid)change(u*2, x, y);
+	else change(u*2+1, x, y);
+	pushup(u);
 }
 
-Node tr_query(int u, int l, int r)
+Node query(int u, int l, int r)
 {
-	if(tr[u].l >= l && tr[u].r <= r)
-		return tr[u];
-	else
-	{
-		int mid = (tr[u].l + tr[u].r) / 2;
-		if(r <= mid)
-			return tr_query(u*2, l, r);
-		else if(l > mid)
-			return tr_query(u*2+1, l, r);
-		else
-		{
-			auto left = tr_query(u*2, l, r);
-			auto right = tr_query(u*2+1, l, r);
-			Node res;
-			tr_pushup(res, left, right);
-			return res;
-		}
-	}
+	if(t[u].l >= l && t[u].r <= r)
+		return {t[u].maxl, t[u].maxr, t[u].sum, t[u].mx};
+	int mid = (t[u].l+t[u].r) / 2;
+	if(r <= mid)
+		return query(u*2, l, r);
+	if(l > mid)
+		return query(u*2+1, l, r);
+	
+	Node L = query(u*2, l, r);
+	Node R = query(u*2+1, l, r);
+	return {max(L.maxl, L.sum+R.maxl), max(R.maxr, R.sum+L.maxr), L.sum+R.sum, max({L.mx, R.mx, L.maxr+R.maxl})};
 }
 
 signed main()
 {
-	ios::sync_with_stdio(false); cin.tie(nullptr);
-	cin >> n >> q;
-	for(int i = 1 ; i <= n ; i ++)
-		cin >> w[i];
-	tr_build(1, 1, n);
+	cin >> n >> m;
 	
-	while(q--)
+	for(int i = 1 ; i <= n ; i ++)
+		cin >> a[i];
+	
+	build(1, 1, n);
+	while(m --)
 	{
-		int opt, a, b;
-		cin >> opt >> a >> b;
+		int opt, x, y;
+		cin >> opt >> x >> y;
 		if(opt == 1)
-			cout << tr_query(1, min(a, b), max(a, b)).tmax << endl;
+			cout << query(1, min(x, y), max(x, y)).mx << endl;	
 		else
-			tr_modify(1, a, b);
+			change(1, x, y);
+		
 	}
 }
