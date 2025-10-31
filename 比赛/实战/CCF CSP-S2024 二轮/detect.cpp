@@ -32,7 +32,6 @@ int main()
         }
         for(int i = 0 ; i < m ; i++) scanf("%d",&p[i]);
         //cout <<isspecialA << " " << isspecialB << endl;
-        ///*
         if(isspecialA)//所有车都是匀速
         {
             for(int i = 0 ; i < n ; i++)
@@ -83,7 +82,6 @@ int main()
             if(ans == 0)canclose = m;
             printf("%d %d\n",ans,canclose);
         }
-//*/
     }
     return 0;
 }

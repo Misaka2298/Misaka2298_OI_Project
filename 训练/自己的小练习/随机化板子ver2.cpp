@@ -2,7 +2,8 @@
 using namespace std;
 typedef long long LL;
 
-static mt19937 myrand(time(nullptr));
+random_device rd;
+static mt19937_64 myrand(time(0));
 
 LL getLLrand(LL l, LL r)
 {
@@ -23,5 +24,5 @@ signed main()
 {
 	LL l, r;
 	cin >> l >> r;
-	cout << getLLrand(l, r);
+	cout << getintrand(l, r) <<endl;
 }

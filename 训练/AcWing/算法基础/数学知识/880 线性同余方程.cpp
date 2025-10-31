@@ -27,7 +27,7 @@ signed main()
 {
 	int n;
 	cin >> n;
-	while(n--)
+	while(n --)
 	{
 		LL a, b, m, x, y;
 		cin >> a >> b >> m;

@@ -17,13 +17,15 @@ void heap_dijkstra()
 	
 	while(heap.size())
 	{
-		auto [udist, u, uktick] = heap.top(); heap.pop();
+		auto t = heap.top(); heap.pop();
+		int udist = t.first, u = t.second, uktick = t.third;
 		
 		if(st[u][uktick]) continue;
 		st[u][uktick] = true;
 		
-		for(auto [v, uvlen] : g[u])
+		for(auto tt : g[u])
 		{
+			int v = tt.first, uvlen = tt.second; 
 			if(dist[v][uktick] > udist + uvlen)
 			{
 				dist[v][uktick] = udist + uvlen;

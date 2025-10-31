@@ -1,68 +1,67 @@
+// Problem: 有向图的拓扑序列
+// Contest: AcWing
+// URL: https://www.acwing.com/problem/content/description/850/
+// Memory Limit: 64 MB
+// Time Limit: 1000 ms
+// Time: 2025-10-30 17:33:06
+
 #include <bits/stdc++.h>
 using namespace std;
 const int maxn = 1e5+10;
-int e[maxn], h[maxn], ne[maxn], idx;
-int d[maxn], n, m;
-queue<int> que;
+
+int n, m;
+int e[maxn], ne[maxn], h[maxn], idx;
+int d[maxn];
+queue<int> q;
 
 void addedge(int a, int b)
 {
-	e[idx] = b , ne[idx] = h[a] , h[a] = idx++;
+	e[idx] = b, ne[idx] = h[a], h[a] = idx ++;
 }
 
-bool topsort()
+void topsort()
 {
-	
-	for(int i = 1 ; i <= n ; i++)
+	for(int i = 1 ; i <= n ; i ++)
 		if(!d[i])
-			que.push(i);
-	int cnt = n;
+			q.push(i);
 	
-	while(que.size())
+	vector<int> ans;
+	
+	while(q.size())
 	{
-		int t = que.front(); que.pop();
-		cnt --;
+		int t = q.front(); q.pop();
+		ans.push_back(t);
 		for(int i = h[t] ; i != -1 ; i = ne[i])
 		{
 			int j = e[i];
 			d[j] --;
-			if(d[j] == 0) que.push(j), cnt ++;
+			if(!d[j])
+				q.push(j);
 		}
 	}
 	
-	return cnt == n-1;
+	if(ans.size() == n)
+		for(auto i : ans)
+			cout << i << ' ';
+	else
+		cout << -1;
 }
 
 signed main()
 {
-	memset(h,-1,sizeof h);
 	cin >> n >> m;
-	int a , b;
-	for(int i = 0 ; i < m ; i++)
+	memset(h, -1, sizeof h);
+	for(int i = 1 ; i <= m ; i ++)
 	{
-		scanf("%d%d",&a ,&b);
-		addedge(a,b);
-		d[b]++;
+		int a, b;
+		cin >> a >> b;
+		d[b] ++;
+		addedge(a, b);
 	}
 	
-	if(topsort())
-	{
-		while(que.size())
-		{
-			cout << que.front() << ' ';
-			que.pop();
-		}
-		cout << endl;
-	}
-	else cout << -1;
-	return 0;
+	topsort();
+	
+	
+	
+	
 }
-
-/*
-3 3
-1 2
-2 3
-1 3
-
-1 2 3
-*/

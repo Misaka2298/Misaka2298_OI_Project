@@ -31,9 +31,11 @@ signed main()
 			f[j] = temp, g[j] = c;
 		}
 	
+	cout << g[m] << endl;
+	
 	int ans = 0;
-	for(int j = 0 ; j <= m ; j ++)
-		if(f[j] == f[m])
-			ans = (ans + g[j]) % mod;
+	//for(int j = 0 ; j <= m ; j ++)
+		//if(f[j] == f[m])
+			//ans = (ans + g[j]) % mod;
 	cout << ans;
 }
