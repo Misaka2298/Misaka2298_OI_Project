@@ -75,17 +75,19 @@ signed main()
 						sub = tasks[j].second;
 					}
 				st[pos] = 1;
+				cnt[lim] --;
 				//cout << pos << endl;
 				
 				while(cnt[lim] > 0)
 				{
-					int sub_max = 0, sub_min = 0x3f3f3f3f, mxpos, mnpos;
+					int sub_max = 0, sub_min = 0x3f3f3f3f, mxpos = 0, mnpos = 0;
 					for(int j = 1 ; j <= n ; j ++)
 						if(tasks[j].first == lim && !cancel[j] && !st[j] && sub_max < tasks[j].second)
 						{
 							mxpos = j;
 							sub_max = tasks[j].second;
 						}
+					if(sub_max == 0) break;
 					for(int j = n ; j >= 1 ; j --)
 						if(tasks[j].first < day && st[j] && sub_min > tasks[j].second)
 						{
@@ -120,8 +122,9 @@ signed main()
 				}
 			
 			st[pos] = 1;
+			cnt[tasks[pos].first] --;
 		}
-		
+				
 	}
 	
 	/*
