@@ -7,7 +7,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn = 1010;
+const int maxn = 1e6+10;
 typedef pair<int, int> PII;
 
 int n;
